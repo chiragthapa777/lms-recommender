@@ -4,26 +4,19 @@ from collections import defaultdict
 
 
 def create_user_item_matrix(ratings):
-    """Create a user-item matrix from ratings data."""
     user_ids = list(set([r["userId"] for r in ratings]))
-    print("🚀 ~ user_ids:", user_ids)
     course_ids = list(set([r["courseId"] for r in ratings]))
-    print("🚀 ~ course_ids:", user_ids)
 
     user_to_index = {user_id: index for index, user_id in enumerate(user_ids)}
-    print("🚀 ~ user_to_index:", user_to_index)
     course_to_index = {course_id: index for index, course_id in enumerate(course_ids)}
-    print("🚀 ~ course_to_index:", course_to_index)
 
     matrix = np.zeros((len(user_ids), len(course_ids)))
-    print("🚀 ~ matrix:", matrix)
 
     for r in ratings:
         user_index = user_to_index[r["userId"]]
         course_index = course_to_index[r["courseId"]]
         matrix[user_index][course_index] = r["rating"]
 
-    print("🚀 ~ matrix:", matrix)
     return matrix, user_to_index, course_to_index
 
 

@@ -3,6 +3,34 @@ from recommender import create_user_item_matrix, get_recommendations
 
 app = Flask(__name__)
 
+
+# def get_ratings_from_db():
+#     # Connect to PostgreSQL database
+#     connection = psycopg2.connect(
+#         dbname="your_database_name",
+#         user="your_username",
+#         password="your_password",
+#         host="your_host",  # e.g., 'localhost'
+#         port="your_port"  # e.g., '5432'
+#     )
+
+#     cursor = connection.cursor()
+
+#     # Execute the query to fetch ratings
+#     cursor.execute("SELECT user_id, course_id, ratings FROM enrollments")
+
+#     # Fetch all rows from the executed query
+#     rows = cursor.fetchall()
+
+#     # Close the cursor and connection
+#     cursor.close()
+#     connection.close()
+
+#     # Convert rows into the required format
+#     ratings = [{"userId": row[0], "courseId": row[1], "rating": row[2]} for row in rows]
+
+#     return ratings
+
 ratings = [
     {"userId": 1, "courseId": 101, "rating": 5},
     {"userId": 1, "courseId": 102, "rating": 3},
