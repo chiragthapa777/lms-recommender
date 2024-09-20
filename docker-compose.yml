@@ -1,0 +1,9 @@
+version: '3'
+services:
+  web:
+    image: chiragthapa777/coursecloud-recommender:v1
+    ports:
+      - "5000:5000"
+    restart: unless-stopped
+    env_file:
+      - ./.env

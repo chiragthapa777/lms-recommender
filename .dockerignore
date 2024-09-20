@@ -1,0 +1,17 @@
+# Ignore the virtual environment directory
+venv/
+  
+# Ignore Python cache files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Ignore other common files and directories
+.DS_Store
+*.git
+*.gitignore
+*.env
+*.dockerignore
+Dockerfile
+docker-compose.yml

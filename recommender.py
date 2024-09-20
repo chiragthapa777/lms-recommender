@@ -24,26 +24,22 @@ def get_recommendations(userId, matrix, user_to_index, course_to_index):
     if userId not in user_to_index:
         return []
 
-    # Calculate cosine similarity between users
     user_index = user_to_index[userId]
     user_ratings = matrix[user_index].reshape(1, -1)
     similarities = cosine_similarity(user_ratings, matrix).flatten()
 
-    # Create a dictionary of scores for all courses
     course_scores = defaultdict(float)
 
     for other_user_index, similarity in enumerate(similarities):
         if other_user_index == user_index:
             continue
         for course_index, rating in enumerate(matrix[other_user_index]):
-            if matrix[user_index][course_index] == 0:  # if user hasn't rated the course
+            if matrix[user_index][course_index] == 0: 
                 course_scores[course_index] += similarity * rating
 
-    # Sort courses by score
     recommended_courses = sorted(
         course_scores.items(), key=lambda x: x[1], reverse=True
     )
 
-    # Convert course indexes back to course IDs
     index_to_course = {index: course_id for course_id, index in course_to_index.items()}
     return [index_to_course[index] for index, score in recommended_courses]
